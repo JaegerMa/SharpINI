@@ -7,7 +7,7 @@ namespace SharpINI
 {
     public static class INIReader
 	{
-		public static Dictionary<string, Dictionary<string, string>> ReadINI(string input, ParseOptions options = null)
+		public static INIFile ReadINI(string input, ParseOptions options = null)
 		{
 			options = options ?? ParseOptions.Default;
 
@@ -20,11 +20,11 @@ namespace SharpINI
 #if SHARE_INTERNAL_METHODS
 		public
 #endif
-		static Dictionary<string, Dictionary<string, string>> ReadINI(StringView input, ParseOptions options)
+		static INIFile ReadINI(StringView input, ParseOptions options)
 		{
-			var sections = new Dictionary<string, Dictionary<string, string>>();
+			var sections = new INIFile();
 
-			Dictionary<string, string> currentSection = null;
+			INISection currentSection = null;
 			string currentSectionTitle = null;
 
 			while(input.Length != 0)
@@ -60,7 +60,7 @@ namespace SharpINI
 
 			void NewSection(string name)
 			{
-				currentSection = new Dictionary<string, string>();
+				currentSection = new INISection();
 				currentSectionTitle = name;
 
 				sections[name] = currentSection;
@@ -194,4 +194,33 @@ namespace SharpINI
 			throw new Exception($"Unexpected end of string. Waiting for char '{endChar}'");
 		}
     }
+
+	public class INIFile : Dictionary<string, Dictionary<string, string>>
+	{
+		public new INISection this[string key]
+		{
+			get
+			{
+				if(!this.ContainsKey(key))
+					return null;
+
+				return base[key] as INISection;
+			}
+			set => base[key] = value;
+		}
+	}
+	public class INISection : Dictionary<string, string>
+	{
+		public new string this[string key]
+		{
+			get
+			{
+				if(!this.ContainsKey(key))
+					return null;
+
+				return base[key];
+			}
+			set => base[key] = value;
+		}
+	}
 }

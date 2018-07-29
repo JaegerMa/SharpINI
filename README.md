@@ -29,6 +29,7 @@ SharpINI parses the string into the following format:
 - Each Section is represented as `Dictionary<string, string>`
 - The INI file is represented as `Dictionary<string, Dictionary<string, string>>`
 
+See Types-section for more information
 
 ### Basic reading
 ```csharp
@@ -159,8 +160,44 @@ Following values are converted:
 - `spaceBeforeValue`, based on `trimSpaceBeforeValue`
 - `initialSelectionName`
 
+## Types
+When reading with `INIReader.ReadINI`, an object of type `INIFile` is returned. This type inherits `Dictionary<string, Dictionary<string, string>>` but replaces the access through the index (`file["myKey"]`). You can use it like any normal `Dictionary`, but if you try to access a key which doesn't exists, `null` is returned instead of an exception being thrown. Additionally, instead of an `Dictionary<string, string>`, an `INISection` is returned which again inherits `Dictionary<string, string>`. This object has the same behaviour like `INIFile` and returns `null` if the given key doesn't exist.
 
-### Using internal methods
+**But**: This feature of `INIFile` and `INISection` can only be used if _you_ treat the object as an `INIFile` or `INISection`. As soon as your variable has the `Dictionary`-type instead of `INIFile` or `INISection`, the normal `Dictionary`-code is executed. So if you want to use this `null`-feature, always store your objects using `var`, `INIFile` or `INISection`.
+
+```csharp
+var file = INIReader.ReadINI(someINIString);
+//Type of file: INIFile
+
+var val = file["someNonExistentKey"];
+// => val == null
+
+Dictionary<string, Dictionary<string, string>> dicFile = file;
+//Upcasting to Dictionary-type
+
+var dicVal = dicFile["someNonExistentKey"];
+//An exception is thrown
+```
+
+If you're accessing a section through `INIFile` which has been manually added by your code which is **not** a `INISection` but a normal `Dictionary<string, string>`, `null` is returned as the cast to `INISection` failed. So, if you're adding new sections, either use `new INISection()` or access it through the `Dictionary`-type instead of the `INIFile`-type.
+
+
+```csharp
+var file = INIReader.ReadINI(someINIString);
+
+file["newSection"] = new INISection();
+var section = file["newSection"];
+//section: INISection
+
+
+Dictionary<string, Dictionary<string, string>> dicFile = file;
+
+dicFile["newSection"] = new Dictionary<string, string>();
+section = file["newSection"];
+//section: null
+```
+
+## Using internal methods
 Beside `ReadINI`, `INIReader` contains methods like `ReadSectionTitle` and `ReadKeyValue`. These methods are used internally. If you want to use these methods for whatever reason, you have to tell SharpINI to perform additional checks in these methods, as by default they omit checks done by the SharpINI-caller method. To announce the usage of these methods, compile the library with the `SHARE_INTERNAL_METHODS` flag (obviously not possible when using the precompiled NuGet package).
 
 To be more performant, the reading is done by simply moving a cursor over the string, so that a new substring does not have to be created for each element. This string-shifting is done by the internal class `StringView`. This class is also only shown if you activate the compiliation flag `SHARE_INTERNAL_METHODS`. So for using the internal methods, you have to create a `StringView` instance.
