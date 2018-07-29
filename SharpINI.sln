@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpINI", "SharpINI\SharpINI.csproj", "{2470A44F-C124-41E1-9C89-F8954FF16A14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2470A44F-C124-41E1-9C89-F8954FF16A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2470A44F-C124-41E1-9C89-F8954FF16A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2470A44F-C124-41E1-9C89-F8954FF16A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2470A44F-C124-41E1-9C89-F8954FF16A14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CCC8B87-9B3D-43DC-A997-E6EFF6A05E85}
+	EndGlobalSection
+EndGlobal

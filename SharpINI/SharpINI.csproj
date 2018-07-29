@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>JaegerMa</Authors>
+    <Company />
+    <Product />
+    <Description>SharpINI is a simple .NET Standard 2.0 compatible library to parse and write INI strings</Description>
+    <Copyright>Copyright (c) 2018 Max Jäger</Copyright>
+    <RepositoryUrl>https://github.com/JaegerMa/SharpINI</RepositoryUrl>
+    <PackageTags>ini parse</PackageTags>
+    <PackageProjectUrl>https://github.com/JaegerMa/SharpINI</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/JaegerMa/SharpINI/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+		<Pack>true</Pack>
+		<PackagePath></PackagePath>
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
