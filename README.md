@@ -89,6 +89,7 @@ var parsed = INIReader.ReadINI(myINIString, options);
 ```
 
 ## Parse options
+(The Markdown renderer on NuGet doesn't support tables. Please read the docu [on Github](https://github.com/JaegerMa/SharpINI/blob/master/README.md)).
 |Name						|Type				|Default|Description|
 |---						|---				|---|---|
 |lineStartCommentChars		|`char[]`			|`;` `#`|If a line starts with one of these chars it's treated as comment and completely ignored|
@@ -141,6 +142,7 @@ Key2=val4"
 
 
 ## RenderOptions
+(The Markdown renderer on NuGet doesn't support tables. Please read the docu [on Github](https://github.com/JaegerMa/SharpINI/blob/master/README.md)).
 |Name						|Type				|Default|Description|
 |---						|---				|---|---|
 |lineBreak					|string				|`\n`| The string used as line break|
