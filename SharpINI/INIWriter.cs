@@ -19,7 +19,7 @@ namespace SharpINI
 		{
 			bool firstSectionWritten = false;
 
-			if(options.initialSectionName != null && sections.ContainsKey(options.initialSectionName))
+			if(options.initialSectionName != null && sections.ContainsKey(options.initialSectionName) && sections[options.initialSectionName] != null)
 			{
 				foreach(var entry in sections[options.initialSectionName])
 					WriteKeyValue(entry.Key, entry.Value, sb, options);
@@ -30,6 +30,9 @@ namespace SharpINI
 
 			foreach(var entry in sections)
 			{
+				if(entry.Value == null)
+					continue;
+
 				if(firstSectionWritten)
 					WriteInterSectionLineBreaks(sb, options);
 
@@ -67,7 +70,8 @@ namespace SharpINI
 			if(options.spaceBeforeValue)
 				sb.Append(options.space);
 
-			sb.Append(value);
+			if(value != null)
+				sb.Append(value);
 
 			sb.Append(options.lineBreak);
 		}
