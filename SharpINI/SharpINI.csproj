@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://github.com/JaegerMa/SharpINI</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/JaegerMa/SharpINI/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
