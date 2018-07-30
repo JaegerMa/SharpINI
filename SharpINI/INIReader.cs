@@ -197,6 +197,11 @@ namespace SharpINI
 
 	public class INIFile : Dictionary<string, Dictionary<string, string>>
 	{
+		public INIFile()
+		{ }
+		public INIFile(IDictionary<string, Dictionary<string, string>> dictionary) : base(dictionary)
+		{ }
+
 		public new INISection this[string key]
 		{
 			get
@@ -211,6 +216,11 @@ namespace SharpINI
 	}
 	public class INISection : Dictionary<string, string>
 	{
+		public INISection()
+		{ }
+		public INISection(IDictionary<string, string> dictionary) : base(dictionary)
+		{ }
+
 		public new string this[string key]
 		{
 			get
