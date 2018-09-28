@@ -35,8 +35,8 @@ By default they are:
 
 ## Reading
 SharpINI parses the string into the following format:
-- Each Section is represented as `Dictionary<string, string>`
-- The INI file is represented as `Dictionary<string, Dictionary<string, string>>`
+- Each Section is represented as `IDictionary<string, string>`
+- The INI file is represented as `IDictionary<string, IDictionary<string, string>>`
 
 See Types-section for more information
 
@@ -112,7 +112,7 @@ var parsed = INIReader.ReadINI(myINIString, options);
 
 
 ## Writing
-When writing INI files, SharpINI accepts the same object type like it produces while reading: `Dictionary<string, Dictionary<string, string>>`
+When writing INI files, SharpINI accepts the same object type like it produces while reading: `IDictionary<string, IDictionary<string, string>>`
 
 ### Basic writing
 ```csharp
@@ -172,9 +172,9 @@ Following values are converted:
 - `initialSelectionName`
 
 ## Types
-When reading with `INIReader.ReadINI`, an object of type `INIFile` is returned. This type inherits `Dictionary<string, Dictionary<string, string>>` but replaces the access through the index (`file["myKey"]`). You can use it like any normal `Dictionary`, but if you try to access a key which doesn't exists, `null` is returned instead of an exception being thrown. Additionally, instead of an `Dictionary<string, string>`, an `INISection` is returned which again inherits `Dictionary<string, string>`. This object has the same behaviour like `INIFile` and returns `null` if the given key doesn't exist.
+When reading with `INIReader.ReadINI`, an object of type `INIFile` is returned. This type implements `IDictionary<string, IDictionary<string, string>>` but replaces the access through the index (`file["myKey"]`). You can use it like any normal `IDictionary`, but if you try to access a key which doesn't exists, `null` is returned instead of an exception being thrown. Additionally, instead of an `IDictionary<string, string>`, an `INISection` is returned which again inherits `IDictionary<string, string>`. This object has the same behaviour like `INIFile` and returns `null` if the given key doesn't exist.
 
-**But**: This feature of `INIFile` and `INISection` can only be used if _you_ treat the object as an `INIFile` or `INISection`. As soon as your variable has the `Dictionary`-type instead of `INIFile` or `INISection`, the normal `Dictionary`-code is executed. So if you want to use this `null`-feature, always store your objects using `var`, `INIFile` or `INISection`.
+**But**: This feature of `INIFile` and `INISection` can only be used if _you_ treat the object as an `INIFile` or `INISection`. As soon as your variable has the `IDictionary`-type instead of `INIFile` or `INISection`, the normal `Dictionary`-code is executed. So if you want to use this `null`-feature, always store your objects using `var`, `INIFile` or `INISection`.
 
 ```csharp
 var file = INIReader.ReadINI(someINIString);
@@ -183,14 +183,14 @@ var file = INIReader.ReadINI(someINIString);
 var val = file["someNonExistentKey"];
 // => val == null
 
-Dictionary<string, Dictionary<string, string>> dicFile = file;
+Dictionary<string, IDictionary<string, string>> dicFile = file;
 //Upcasting to Dictionary-type
 
 var dicVal = dicFile["someNonExistentKey"];
 //An exception is thrown
 ```
 
-If you're accessing a section through `INIFile` which has been manually added by your code which is **not** a `INISection` but a normal `Dictionary<string, string>`, `null` is returned as the cast to `INISection` failed. So, if you're adding new sections, either use `new INISection()` or access it through the `Dictionary`-type instead of the `INIFile`-type.
+If you're accessing a section through `INIFile` which has been manually added by your code which is **not** a `INISection` but a normal `IDictionary<string, string>`, `null` is returned as the cast to `INISection` failed. So, if you're adding new sections, either use `new INISection()` or access it through the `IDictionary`-type instead of the `INIFile`-type.
 
 
 ```csharp
@@ -201,7 +201,7 @@ var section = file["newSection"];
 //section: INISection
 
 
-Dictionary<string, Dictionary<string, string>> dicFile = file;
+IDictionary<string, IDictionary<string, string>> dicFile = file;
 
 dicFile["newSection"] = new Dictionary<string, string>();
 section = file["newSection"];
