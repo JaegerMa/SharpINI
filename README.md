@@ -22,7 +22,16 @@ These rules are hard and cannot be changed using parsing options
 - Any space at the start of a line is removed
 - Any space between the key of a key-value-pair and the `=` is removed
 - Section titles must not contain closing brackets (`]`) in their name
-- Any line must be a section title, a key-value pair, an empty line (filled with space) or a comment line
+- Any line must be a section title, a key-value pair, a comment line or an empty line (an empty line is just filled with space chars)
+
+### Spaces
+Whenever "Space" is used in this readme, it means every char that was defined as `spaceChars` in the parse options.
+
+By default they are:
+- `0x20` Space
+- `0x09` Tab
+- `0xA0` Non-breaking space (NBSP)
+
 
 ## Reading
 SharpINI parses the string into the following format:
