@@ -2,11 +2,11 @@
 
 namespace SharpINI
 {
-	public class INIFile : Dictionary<string, Dictionary<string, string>>
+	public class INIFile : OrderedDictionary<string, IDictionary<string, string>>
 	{
 		public INIFile()
 		{ }
-		public INIFile(IDictionary<string, Dictionary<string, string>> dictionary) : base(dictionary)
+		public INIFile(IDictionary<string, IDictionary<string, string>> dictionary) : base(dictionary)
 		{ }
 
 		public new INISection this[string key]

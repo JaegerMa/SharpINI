@@ -2,7 +2,7 @@
 
 namespace SharpINI
 {
-	public class INISection : Dictionary<string, string>
+	public class INISection : OrderedDictionary<string, string>
 	{
 		public INISection()
 		{ }
