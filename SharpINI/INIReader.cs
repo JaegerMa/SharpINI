@@ -110,7 +110,7 @@ namespace SharpINI
 				switch(options.multiKeyMode)
 				{
 					case MultiKeyMode.DISALLOW:
-						throw new Exception($"Key '{key} in section '{currentSectionTitle}'");
+						throw new Exception($"Key '{key}' in section '{currentSectionTitle}'");
 					case MultiKeyMode.IGNORE:
 						return;
 					case MultiKeyMode.OVERRIDE:
