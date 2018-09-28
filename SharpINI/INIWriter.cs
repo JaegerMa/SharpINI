@@ -6,7 +6,7 @@ namespace SharpINI
 {
     public class INIWriter
     {
-		public static string WriteINI(Dictionary<string, Dictionary<string, string>> sections, RenderOptions options = null)
+		public static string WriteINI(IDictionary<string, IDictionary<string, string>> sections, RenderOptions options = null)
 		{
 			options = options ?? RenderOptions.Default;
 
@@ -15,7 +15,7 @@ namespace SharpINI
 
 			return sb.ToString();
 		}
-		public static void WriteINI(Dictionary<string, Dictionary<string, string>> sections, StringBuilder sb, RenderOptions options = null)
+		public static void WriteINI(IDictionary<string, IDictionary<string, string>> sections, StringBuilder sb, RenderOptions options = null)
 		{
 			bool firstSectionWritten = false;
 
@@ -40,7 +40,7 @@ namespace SharpINI
 				firstSectionWritten = true;
 			}
 		}
-		public static void WriteSection(string name, Dictionary<string, string> childs, StringBuilder sb, RenderOptions options = null)
+		public static void WriteSection(string name, IDictionary<string, string> childs, StringBuilder sb, RenderOptions options = null)
 		{
 			options = options ?? RenderOptions.Default;
 
