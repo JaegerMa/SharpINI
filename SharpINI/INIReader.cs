@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SharpINI
 {
-    public static class INIReader
+	public static class INIReader
 	{
 		public static INIFile ReadINI(string input, ParseOptions options = null)
 		{
