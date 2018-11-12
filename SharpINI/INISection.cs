@@ -20,5 +20,12 @@ namespace SharpINI
 			}
 			set => base[key] = value;
 		}
+
+
+
+		public static INISection FromDictionary(IDictionary<string, string> dictionary)
+		{
+			return new INISection(dictionary);
+		}
 	}
 }
