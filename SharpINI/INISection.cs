@@ -22,6 +22,12 @@ namespace SharpINI
 		}
 
 
+		public INISection Clone()
+		{
+			return INISection.FromDictionary(this);
+		}
+
+
 
 		public static INISection FromDictionary(IDictionary<string, string> dictionary)
 		{
