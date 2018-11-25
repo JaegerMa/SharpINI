@@ -47,6 +47,23 @@ namespace SharpINI
 										spaceBeforeValue: this.trimSpaceBeforeValue,
 										initialSectionName: this.initialSectionName);
 		}
+
+		public ParseOptions Clone()
+		{
+			var clone = new ParseOptions()
+			{
+				lineStartCommentChars = this.lineStartCommentChars?.ToArray(),
+				spaceChars = this.spaceChars?.ToArray(),
+				lineBreaks = this.lineBreaks?.ToArray(),
+				trimSpaceBeforeValue = this.trimSpaceBeforeValue,
+				trimSpaceAfterValue = this.trimSpaceAfterValue,
+				multiKeyMode = this.multiKeyMode,
+				multiSectionMode = this.multiSectionMode,
+				initialSectionName = this.initialSectionName,
+			};
+
+			return clone;
+		}
 	}
 
 	public enum MultiKeyMode
