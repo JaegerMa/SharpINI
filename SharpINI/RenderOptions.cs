@@ -30,5 +30,21 @@ namespace SharpINI
 			this.linesBetweenSections = linesBetweenSections;
 			this.initialSectionName = initialSectionName;
 		}
-    }
+
+
+		public RenderOptions Clone()
+		{
+			var clone = new RenderOptions()
+			{
+				lineBreak = this.lineBreak,
+				space = this.space,
+				spaceAfterKey = this.spaceAfterKey,
+				spaceBeforeValue = this.spaceBeforeValue,
+				linesBetweenSections = this.linesBetweenSections,
+				initialSectionName = this.initialSectionName,
+			};
+
+		return clone;
+		}
+	}
 }
