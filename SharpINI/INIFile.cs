@@ -22,6 +22,12 @@ namespace SharpINI
 		}
 
 
+		public INIFile Clone()
+		{
+			return INIFile.FromDictionary(this, deepClone: true);
+		}
+
+
 
 		public static INIFile FromDictionary(IDictionary<string, IDictionary<string, string>> dictionary, bool deepClone = true)
 		{
